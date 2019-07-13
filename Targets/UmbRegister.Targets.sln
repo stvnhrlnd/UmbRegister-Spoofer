@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Target.Site.8.1.0", "Target
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Target.Site.7.12.4", "Target.Site.7.12.4\Target.Site.7.12.4.csproj", "{DEBC2B7F-71D5-4572-A5C7-E2CA57386E03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Target.Site.8.1.0.NonUmbracoForm", "Target.Site.8.1.0.NonUmbracoForm\Target.Site.8.1.0.NonUmbracoForm.csproj", "{72EBABAF-8427-498C-A7B2-86501B8381A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DEBC2B7F-71D5-4572-A5C7-E2CA57386E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEBC2B7F-71D5-4572-A5C7-E2CA57386E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEBC2B7F-71D5-4572-A5C7-E2CA57386E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EBABAF-8427-498C-A7B2-86501B8381A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EBABAF-8427-498C-A7B2-86501B8381A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EBABAF-8427-498C-A7B2-86501B8381A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EBABAF-8427-498C-A7B2-86501B8381A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

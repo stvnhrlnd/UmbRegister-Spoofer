@@ -344,3 +344,5 @@ Target.Site.7.12.4/App_Data/*
 !Target.Site.7.12.4/App_Data/Umbraco.sdf
 Target.Site.8.1.0/App_Data/*
 !Target.Site.8.1.0/App_Data/Umbraco.sdf
+Target.Site.8.1.0.NonUmbracoForm/App_Data/*
+!Target.Site.8.1.0.NonUmbracoForm/App_Data/Umbraco.sdf
