@@ -3,6 +3,7 @@ import html.parser
 import http.cookies
 import pprint
 import ssl
+import sys
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -185,6 +186,9 @@ if __name__ == "__main__":
 
     if (args.crawl):
         forgery_cookie, forgery_token, ufprt = crawl(args.URL)
+        if forgery_cookie is None or forgery_token is None:
+            print("Anti-forgery token was not found on site :(")
+            sys.exit()
 
     register_member(args.URL,
                     args.name,
