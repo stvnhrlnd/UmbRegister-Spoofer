@@ -1,0 +1,35 @@
+﻿@inherits UmbracoTemplatePage<Contact>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using Terratype;
+@{
+    Layout = "Master.cshtml";
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+<section class="section">
+    <div class="container">
+        @if (TempData.ContainsKey("HandleContactSuccess") && (bool)TempData["HandleContactSuccess"])
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    Your message was sent!
+                </div>
+            </div>
+        }
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <h2>@Model.Content.MapHeader</h2>
+                @Html.Terratype(Model.Content.Map)
+            </div>
+
+            <div class="col-md-6">
+                <h2>@Model.Content.ContactFormHeader</h2>
+                @Model.Content.ContactIntro
+                @Html.Action("ContactForm", "Contact")
+            </div>
+
+        </div>
+    </div>
+</section>
